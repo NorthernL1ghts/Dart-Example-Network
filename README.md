@@ -1,2 +1,3 @@
 # Dart-Example-Network
-Custom made network programmed in 'Dart'.  This project is an 'back-end server with client, which posts and gathers requests from HTML pages.
+Custom made HttpServer to store information to HTML webpages and load files if necesary. Code wrriten in the programming language 'Dart'. 
+
