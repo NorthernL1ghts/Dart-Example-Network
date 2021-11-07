@@ -1,28 +1,30 @@
 /* Main.dart (Server) */
 
-import 'dart:async';
+import 'dart:async'; 
 import 'dart:io';
 
 Future main() async {
   HttpServer server;
   try {
     server = await HttpServer.bind(
-      '127.0.0.1' // Set Server IP address.
-      8080, // Set Server Port address.
+      '127.0.0.1' // Set Server IP address; this can be anything, just localhost for testing purposes.
+      8080, // Set Server Port address; this can be anything, just localhost for testing purposes.
       );
-  } catch (e) { // Error handling 
+    
+    /* Error handling */  
+  } catch (e) { 
     print ('failed to start server $e');
     exit(-1); // Close server.
   }
   
-  print('listening on Localhost:${server.port}');
+  print('listening on Localhost:${server.port}'); // display message to user that connection was successful.
   
-  await for (var req in server) {
+  await for (var req in server) { // await is just other alternative from listen.
     HttpResponse response = req.response
-      ..headers.contentType = ContentType.html;
+      ..headers.contentType = ContentType.html; // Use HTML to store website.
     
-    if (req.method == 'GET') {
-      String filename =  req.uri.pathSegments.last;
+    if (req.method == 'GET') { // Get request.
+      String filename =  req.uri.pathSegments.last; 
       
       if (!filename.contains('.html')) {
         filename = filename = + '.html';
@@ -47,20 +49,23 @@ Future main() async {
 // import 'dart:async';
 // import 'dart:io';
 
-// final File file = File('index.html'); // create new file.
+// final File file = File('index.html'); // Create new file.
 
 // Future main() async {
 //   HttpServer server;
 //   try {
-//     server = await HttpServer.bind(
+//     server = await HttpServer.bind( // Bind server to IP and Port addresses.
 //       '127.0.0.1',
 //       8080,
 //       );
+    
+//     /* Error Handling */
 //   } catch (e) {
 //     print('failed to start server $e');
 //     exit(-1);
 //   }
   
+//   /* Alert */
 //   print('Listening on Localhost:${server.port}');
   
 //   await for (var req in server) {
@@ -71,11 +76,11 @@ Future main() async {
 //       try {
 //         await file.openRead().pipe(response);
 //       } catch (e) {
-//         print("couldny't read file: $e");
+//         print("couldn't read file: $e");
 //         exit(-1);
 //       }
 //     } else {
-//       print("Can't opne file");
+//       print("Can't open file");
 //       req.response
 //         ..ststusCode = HttpServer.notFound
 //         ..close();
