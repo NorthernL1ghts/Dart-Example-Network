@@ -7,12 +7,12 @@ Future main() async {
   HttpServer server;
   try {
     server = await HttpServer.bind(
-      '127.0.0.1'
-      8080,
+      '127.0.0.1' // Set Server IP address.
+      8080, // Set Server Port address.
       );
-  } catch (e) {
+  } catch (e) { // Error handling 
     print ('failed to start server $e');
-    exit(-1); // close server.
+    exit(-1); // Close server.
   }
   
   print('listening on Localhost:${server.port}');
